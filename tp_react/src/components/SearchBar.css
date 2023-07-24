@@ -1,0 +1,53 @@
+/* SearchBar.css */
+.search-bar-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar-container h1 {
+    margin-bottom: 15px;
+  }
+  
+  .search-bar-container form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .search-bar-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search-bar-container button {
+    padding: 10px 15px;
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-bar-container button:hover {
+    background-color: red;
+  }
+  
+  .search-bar-container ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .search-bar-container .employee-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
