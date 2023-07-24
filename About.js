@@ -1,6 +1,8 @@
 
 
 import React from 'react';
+import './About.css'
+import '../App.css'
 // import Blndu-300x300 from './components/Blndu-300x300.png'
 
 function About() {
@@ -8,6 +10,7 @@ function About() {
     <div className='about-container'>
 
         <h1>About Us</h1>
+        
         <p>ENTERPRISE DIGITALIZATION - TECHNOLOGY PARTNER</p>
         <p>
            TechProjects drives the outcomes that keep our clients a step ahead. Our size gives us enough flexibility to pass on the cost benefits to our clients and employees. You get a personalized attention and best return on investment when you engage TechProjects for any of your IT solutions. These include Enterprise Digital Transformation, Data Intelligence &amp; Automation, IT Security, or Automation, etc. We place hard-to-fine skilled IT professionals on contract, contract- to-hire, and FTEs. 
@@ -18,8 +21,10 @@ function About() {
 
         <h1>Our Leadership</h1>
         <p>
+
+        {/* <img src ='images/tiger.jpg' ></img> */}
 <h2>Bindu Madhavi Madiraju, President </h2>
-<image> </image>
+  
 
 As a minority & women owned business leader, Bindu Madiraju got more than a decade experience  to create a culture where team members look forward to coming to work in the morning, Contribute, Stay, lead and implement the company’s business growth creativity, stability & leadership strategy. Bindu helped fuel business growth by rapidly expanding public sector services around New York City area. Her experience includes strengthening the company’s focus on commercial customer-centricity and building an employee-driven, open culture of innovation to foster talent. 
 
