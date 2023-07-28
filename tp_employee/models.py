@@ -3,6 +3,7 @@ from django.db import models
 class Employee(models.Model):
     emp_name = models.CharField(max_length = 100)
     emp_id = models.IntegerField(default = 0)
+    emp_mail = models.EmailField(null = True)
     designation = models.CharField(max_length = 255)
     doj = models.DateField(max_length=50)
     dob = models.DateField(max_length=50)

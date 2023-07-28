@@ -5,6 +5,10 @@
     border-radius: 5px;
     margin-bottom: 20px;
   }
+
+  label{
+    margin-right: 10px;
+  }
   
   .search-bar-container h1 {
     margin-bottom: 15px;

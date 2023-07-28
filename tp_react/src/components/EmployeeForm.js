@@ -9,6 +9,7 @@ const EmployeeForm = () => {
   const [formData, setFormData] = useState({
     emp_name: '',
     emp_id: '',
+    emp_mail: '',
     designation: '',
     doj: '',
     dob: '',
@@ -57,6 +58,7 @@ const EmployeeForm = () => {
       setFormData({
         emp_name: '',
         emp_id: '',
+        emp_mail:'',
         designation: '',
         doj: '',
         dob: '',
@@ -101,6 +103,7 @@ const EmployeeForm = () => {
         setFormData({
           emp_name: '',
           emp_id: '',
+          emp_mail:'',
           designation: '',
           doj: '',
           dob: '',
@@ -125,6 +128,7 @@ const EmployeeForm = () => {
       setFormData({
         emp_name: selectedEmployee.emp_name,
         emp_id: selectedEmployee.emp_id,
+        emp_mail: selectedEmployee.emp_mail,
         designation: selectedEmployee.designation,
         doj: selectedEmployee.doj,
         dob: selectedEmployee.dob,
@@ -135,6 +139,7 @@ const EmployeeForm = () => {
       setFormData({
         emp_name: '',
         emp_id: '',
+        emp_mail: '',
         designation: '',
         doj: '',
         dob: '',
@@ -177,9 +182,20 @@ const EmployeeForm = () => {
             name="emp_id"
             value={formData.emp_id}
             onChange={handleInputChange}
-            placeholder="Enter Employee ID"
+            placeholder="Enter Employee ID"h
           />
         </div>
+        <div className="form-group">
+          <input
+            type="text"
+            id="emp_mail"
+            name="emp_mail"
+            value={formData.emp_mail}
+            onChange={handleInputChange}
+            placeholder="Enter Employee Mail id"h
+          />
+        </div>
+
         <div className="form-group">
           <input
             type="text"

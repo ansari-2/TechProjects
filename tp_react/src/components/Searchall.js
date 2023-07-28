@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SearchBar.css'; // Import the CSS file for styling
 
-const SearchbyName= () => {
+
+const Searchall= () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
   
@@ -14,7 +15,7 @@ const SearchbyName= () => {
       event.preventDefault();
   
       try {
-        const response = await axios.get('http://localhost:8000/tp_employee/searchbyName', {
+        const response = await axios.get('http://localhost:8000/tp_employee/searchall', {
           params: { search: searchQuery },
         });
         setSearchResults(response.data);
@@ -32,7 +33,7 @@ const SearchbyName= () => {
         <form onSubmit={handleSearchSubmit}>
           <input
             type="text"
-            placeholder="Search by Name"
+            placeholder="Search"
             value={searchQuery}
             onChange={handleSearchChange}
           />
@@ -72,4 +73,4 @@ const SearchbyName= () => {
     );
   };
   
-  export default SearchbyName;
+  export default Searchall;

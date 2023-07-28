@@ -5,7 +5,7 @@ from tp_employee.models import *
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ['id','emp_name', 'emp_id', 'designation', 'doj', 'dob']
+        fields = ['id','emp_name', 'emp_id', 'emp_mail', 'designation', 'doj', 'dob']
 
     def create(self, validated_data):
         """
@@ -19,6 +19,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         """
         instance.emp_name = validated_data.get('emp_name', instance.emp_name)
         instance.emp_id = validated_data.get('emp_id', instance.emp_id)
+        instance.emp_mail = validated_data.get('emp_mail', instance.emp_mail)
         instance.designation = validated_data.get('designation', instance.designation)
         instance.doj = validated_data.get('doj', instance.doj)
         instance.dob = validated_data.get('dob', instance.dob)
