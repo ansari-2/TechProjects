@@ -9,10 +9,7 @@ const SearchForm = () => {
   const [query2, setQuery2] = useState('');
   const [query3, setQuery3] = useState('');
   const [query4, setQuery4] = useState('');
-  const [searchResults1, setSearchResults1] = useState([]);
-  const [searchResults2, setSearchResults2] = useState([]);
-  const [searchResults3, setSearchResults3] = useState([]);
-  const [searchResults4, setSearchResults4] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleSearchChange1 = (event1) => {
     setQuery1(event1.target.value);
@@ -22,82 +19,79 @@ const SearchForm = () => {
     setQuery2(event2.target.value);
   };
 
-  
   const handleSearchChange3 = (event3) => {
     setQuery3(event3.target.value);
   };
 
-  
-  const handleSearchChange4= (event4) => {
+  const handleSearchChange4 = (event4) => {
     setQuery4(event4.target.value);
   };
 
+  const clearSearchResults = () => {
+    setSearchResults([]);
+  };
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.get('http://localhost:8000/tp_employee/searchall', {
-        params: { search: query1}});
-        setSearchResults1(response.data);
-    }catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-  
+    if (query1 || query2 || query3 || query4) {
+      try {
+        const requests = [];
 
+        if (query1) {
+          requests.push(axios.get('http://localhost:8000/tp_employee/searchall', {
+            params: { search: query1 }
+          }));
+        }
 
-    try {
-      const responsename = await axios.get('http://localhost:8000/tp_employee/searchbyName', {
-        params: { search: query2}});
-        setSearchResults2(responsename.data);
-    }catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-  
+        if (query2) {
+          requests.push(axios.get('http://localhost:8000/tp_employee/searchbyName', {
+            params: { search: query2 }
+          }));
+        }
 
+        if (query3) {
+          requests.push(axios.get('http://localhost:8000/tp_employee/searchbyId', {
+            params: { search: query3 }
+          }));
+        }
 
-    
-    try {
-      const responseid = await axios.get('http://localhost:8000/tp_employee/searchbyId', {
-        params: { search: query3}});
-        setSearchResults3(responseid.data);
-    }catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-  
+        if (query4) {
+          requests.push(axios.get('http://localhost:8000/tp_employee/searchbyDesg', {
+            params: { search: query4 }
+          }));
+        }
 
+        const responses = await Promise.all(requests);
+        const combinedResults = responses.flatMap((response) => response.data);
+        const uniqueResults = removeDuplicates(combinedResults, 'emp_id');
 
-    try {
-      const responsedesg = await axios.get('http://localhost:8000/tp_employee/searchbyDesg', {
-        params: { search: query4}});
-        setSearchResults4(responsedesg.data);
-    }catch (error) {
-      console.error('Error fetching search results:', error);
-    }
-    
-
-  };
-
+        setSearchResults(uniqueResults);
  
-    const clearSearchResults1 = () => {
-      setSearchResults1([]);
+      } catch (error) {
+        console.error('Error fetching search results:', error);
+      }
+    } else {
+      clearSearchResults();
+      console.log('All search boxes are empty');
+    }
   };
-
-  const clearSearchResults2 = () => {
-    setSearchResults2([]);
-};
-
-const clearSearchResults3 = () => {
-  setSearchResults3([]);
-};
-
-const clearSearchResults4 = () => {
-  setSearchResults4([]);
-};
+  const removeDuplicates = (arr, uniqueProp) => {
+    const uniqueMap = new Map();
+    arr.forEach((item) => {
+      const uniqueKey = item[uniqueProp];
+      if (!uniqueMap.has(uniqueKey)) {
+        uniqueMap.set(uniqueKey, item);
+      }
+    });
+    return Array.from(uniqueMap.values());
+  };
   return (
     <div className="search-bar-container">
-    <form onSubmit={handleSearchSubmit}>
-      <input
+      <form onSubmit={handleSearchSubmit}>
+        {/* Your search input fields */}
+        {/* ... */}
+        <input
         type="text"
         
         placeholder="Search"
@@ -131,12 +125,14 @@ const clearSearchResults4 = () => {
         onChange={handleSearchChange4}
       />
       <br></br>
-  <button type="submit">Submit</button>
-    </form>
 
-    { ((searchResults1.length > 0)||(searchResults2.length>0)||(searchResults3.length>0)||(searchResults4.length>0)) && (
-      <div>
-          <table class="container">
+
+        <button type="submit">Submit</button>
+      </form>
+
+      {searchResults.length > 0 && (
+        <div>
+          <table className="container">
             <thead>
               <tr>
                 <th>Name</th>
@@ -148,7 +144,7 @@ const clearSearchResults4 = () => {
               </tr>
             </thead>
             <tbody>
-              {searchResults1.map((employee) => (
+              {searchResults.map((employee) => (
                 <tr key={employee.id} className="employee-item">
                   <td>{employee.emp_name}</td>
                   <td>{employee.emp_id}</td>
@@ -161,14 +157,9 @@ const clearSearchResults4 = () => {
             </tbody>
           </table>
         </div>
-        )};
-
-
-  
-           
-  </div>
-);
+      )}
+    </div>
+  );
 };
-
 
 export default SearchForm;
