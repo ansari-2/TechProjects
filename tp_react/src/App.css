@@ -1,98 +1,48 @@
-/* App.css */
-body {
-  background-color: red;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'PT Sans', sans-serif;
 }
 
-/* .App {
-  max-width: 10000px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 36px;
+.home,
+.admin,
+.employeesearch,
+.employeelist,
+.upload,
+.aboutus,
+.organisation,
+.sign-up {
+display: flex ;
+height: 90vh;
+align-items: center;
+justify-content: center;
+font-size: 3rem;
 }
 
-nav {
-  background-color: red;
-  padding: 10px 0;
+.aboutus {
+/* background-image: url('/public/images/img-2.jpg'); */
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+color: #fff;
+font-size: 100px;
 }
 
-.nav-list {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  justify-content: center;
-  align-items: center;
+.products {
+ /* background-image: url('/public/images/img-1.jpg');  */
+background-position: center;
+background-size: fill;
+background-repeat: no-repeat;
+color: #fff;
+font-size: 100px;
 }
 
-.nav-list li {
-  margin: 0;
-}
-
-.nav-list li a {
-  text-decoration: none;
-  color: white;
-  padding: 10px 20px;
-}
-
-.nav-list li a:hover {
-  background-color: white;
-  color: red;
-  border-radius: 4px;
-}
-
-form {
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-input[type="text"] {
-  padding: 8px;
-  margin-right: 8px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  color: #333;
-  font-size: 16px;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-button {
-  padding: 8px 16px;
-  background-color: red;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  margin-bottom: 10px;
-}
-
-.employee-item {
-  border: 1px solid #ccc;
-  padding: 10px;
-  background-color: white;
-  color: red;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+.sign-up {
+/* background-image: url('/public/images/img-8.jpg'); */
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+color: #fff;
+font-size: 100px;
 }

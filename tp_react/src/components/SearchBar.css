@@ -26,7 +26,7 @@
   
   .search-bar-container button {
     padding: 10px 15px;
-    background-color: red;
+    background-color:rgb(51, 99, 255);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -34,7 +34,7 @@
   }
   
   .search-bar-container button:hover {
-    background-color: red;
+    background-color: black;
   }
   
   .search-bar-container ul {
@@ -49,5 +49,25 @@
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
+  }
+  .search-dropdown {
+    /* Add your custom styles here */
+    width: 250px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  /* Style the dropdown arrow icon */
+  .search-dropdown::after {
+    content: '\25BC'; /* Unicode character for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
   }
   

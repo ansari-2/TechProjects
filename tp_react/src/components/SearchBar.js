@@ -1,4 +1,4 @@
-// SearchBar.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import './SearchBar.css'; // Import the CSS file for styling
@@ -31,6 +31,14 @@ const SearchBar = () => {
   return (
     <div className="search-bar-container">
       <form onSubmit={handleSearchSubmit}>
+      {/* <select value={searchOption} onChange={handleOptionChange}className="search-dropdown">
+          <option value="" disabled>
+            Search by
+          </option>
+          <option value="designation">Designation</option>
+          <option value="emp_name">Name</option>
+          <option value="emp_id">ID</option>
+        </select> */}
         <input
           type="text"
           placeholder="Search Employees"
@@ -48,6 +56,7 @@ const SearchBar = () => {
               <li key={employee.id} className="employee-item">
                 <p>Name: {employee.emp_name}</p>
                 <p>EmployeeID: {employee.emp_id}</p>
+                <p>EmployeeEmail: {employee.emp_mail}</p>
                 <p>Designation: {employee.designation}</p>
                 <p>Date of Joining: {employee.doj}</p>
                 <p>Date of Birth: {employee.dob}</p>
@@ -61,6 +70,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
-
-

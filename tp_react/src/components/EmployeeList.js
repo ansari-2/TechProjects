@@ -1,7 +1,8 @@
 // EmployeeList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './EmployeeList.css'; // Import the CSS file for styling
+import './EmployeeList.css';
+import Papa from 'papaparse'; // Import the CSS file for styling
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
@@ -18,23 +19,51 @@ const EmployeeList = () => {
       console.error('Error fetching employees:', error);
     }
   };
+  const handleDownloadCSV = () => {
+    const csv = Papa.unparse(employees, {
+      header: true,
+      skipEmptyLines: true,
+    });
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'employee_list.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
-    <div className="employee-list-container">
-      <h2>Employee List</h2>
-      <ul>
+    <div className="container">
+    <h2 style={{ textAlign: 'center' }}>Employee List</h2>
+    <button style={{hover:"black", position: 'fixed', bottom: '20px', right: '20px', padding: '10px 20px', backgroundColor: '#3333FF', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleDownloadCSV}>Export CSV</button>
+    <table className="employee-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>EmployeeID</th>
+          <th>Mail id</th>
+          <th>Designation</th>
+          <th>Date of Joining</th>
+          <th>Date of Birth</th>
+        </tr>
+      </thead>
+      <tbody>
         {employees.map((employee) => (
-          <li key={employee.id}>
-            <p>Name: {employee.emp_name}</p>
-            <p>EmployeeID: {employee.emp_id}</p>
-            <p>Designation: {employee.designation}</p>
-            <p>Date of Joining: {employee.doj}</p>
-            <p>Date of Birth: {employee.dob}</p>
-            <br></br>
-          </li>
+          <tr key={employee.id}>
+            <td>{employee.emp_name}</td>
+            <td>{employee.emp_id}</td>
+            <td>{employee.emp_mail}</td>
+            <td>{employee.designation}</td>
+            <td>{employee.doj}</td>
+            <td>{employee.dob}</td>
+          </tr>
         ))}
-      </ul>
-    </div>
+      </tbody>
+    </table>
+  </div>
   );
 };
 

@@ -1,11 +1,20 @@
 /* EmployeeForm.css */
+ /* body {
+  background-image: url("images-1.jpg") 
+
+} */
+
+
+
+
+
 .employee-form-container {
   width: 400px;
   margin: 100px auto;
   padding: 50px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: white;
 }
 
 .employee-form-container h2 {
@@ -41,18 +50,18 @@
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  background-color: #f33;
+  background-color: rgb(51, 99, 255);
   color: #fff;
   cursor: pointer;
 }
 
 .form-buttons button:hover {
-  background-color: #f33;
+  background-color: black;
 }
 /* Style for the select dropdown */
 .form-group select {
-  width: 1000px;
-  padding: 50px;
+  width: 298px;
+  padding: 5px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -64,3 +73,5 @@
   padding: 8px;
 }
 /* Add more CSS styling as needed */
+/* EmployeeForm.css */
+
