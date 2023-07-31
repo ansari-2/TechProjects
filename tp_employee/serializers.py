@@ -14,10 +14,10 @@ class EmployeeSerializer(serializers.ModelSerializer):
         api_url = 'https://api.sendinblue.com/v3/smtp/email'
 
         # Email data
-        sender_email = 'katasani.shashank48@gmail.com'
-        recipient_email = emp_mail
-        subject = 'Test Email'
-        content = '<p>This is a test email sent using the SendinBlue API.</p>'
+        sender_email = 'techprojectspython@gmail.com'
+        recipient_email = 'rastogiprakhar01@gmail.com'
+        subject = 'Employee Added in HR Portal'
+        content = '<p>This is a test email from TechProjects HR portal</p>'
 
         # Compose the request headers
         headers = {
