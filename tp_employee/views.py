@@ -15,6 +15,15 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
+class TimesheetList(generics.ListCreateAPIView):
+    queryset = Timesheet.objects.all()
+    serializer_class = TimesheetSerializer
+
+
+class TimesheetDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Timesheet.objects.all()
+    serializer_class = TimesheetSerializer    
+
 
 class EmployeeListView(generics.ListAPIView):
     queryset = Employee.objects.all()

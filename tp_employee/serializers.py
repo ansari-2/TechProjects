@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from tp_employee.models import *
-import requests
+import requests 
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ['id','emp_name', 'emp_id', 'emp_mail','designation', 'doj', 'dob']
+        fields = '__all__'
 
     def create(self, validated_data):
         emp_mail = validated_data.get('emp_mail', None)
@@ -14,10 +14,10 @@ class EmployeeSerializer(serializers.ModelSerializer):
         api_url = 'https://api.sendinblue.com/v3/smtp/email'
 
         # Email data
-        sender_email = 'techprojectspython@gmail.com'
-        recipient_email = 'rastogiprakhar01@gmail.com'
-        subject = 'Employee Added in HR Portal'
-        content = '<p>This is a test email from TechProjects HR portal</p>'
+        sender_email = 'katasani.shashank48@gmail.com'
+        recipient_email = emp_mail
+        subject = 'Test Email'
+        content = '<p>This is a test email sent using the SendinBlue API.</p>'
 
         # Compose the request headers
         headers = {
@@ -48,16 +48,30 @@ class EmployeeSerializer(serializers.ModelSerializer):
         """
         Update and return an existing `Employee` instance, given the validated data.
         """
-        instance.emp_name = validated_data.get('emp_name', instance.emp_name)
         instance.emp_id = validated_data.get('emp_id', instance.emp_id)
         instance.emp_mail = validated_data.get('emp_mail', instance.emp_mail)
         instance.designation = validated_data.get('designation', instance.designation)
         instance.doj = validated_data.get('doj', instance.doj)
         instance.dob = validated_data.get('dob', instance.dob)
+        instance.emp_firstname = validated_data.get('emp_firstname', instance.emp_firstname)
+        instance.emp_lastname = validated_data.get('emp_lastname', instance.emp_lastname)
+        instance.ssn = validated_data.get('ssn', instance.ssn)
+        instance.emp_username = validated_data.get('emp_username', instance.emp_username)
+        instance.emp_alternatemail = validated_data.get('emp_alternatemail', instance.emp_alternatemail)
+        instance.contact = validated_data.get('contact', instance.contact)
+        instance.emp_type = validated_data.get('emp_type', instance.emp_type)
+        instance.emp_status = validated_data.get('emp_status', instance.emp_status)
+        instance.emp_department = validated_data.get('emp_department', instance.emp_department)
+        
         instance.save()
         return instance
     
-class UploadSerializer(serializers.ModelSerializer):
+class TimesheetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Timesheet
+        fields = '__all__'
+    
+class UploadSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Upload
         fields = '__all__'
@@ -75,4 +89,5 @@ class UploadSerializer(serializers.ModelSerializer):
     #     instance.emp = validated_data.get('emp', instance.emp)
     #     instance.doc = validated_data.get('doc', instance.doc)
     #     instance.save()
-    #     return instance  
+    #     return instance 
+     

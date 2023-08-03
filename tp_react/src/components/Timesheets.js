@@ -69,15 +69,20 @@ const Timesheets = () => {
   
 
   const handleCheckboxChange = (employeeId, day) => {
+    // Toggle the popup visibility
     setShowPopup(!showPopup);
-    setCurrentEmployee(employeeId);
-    setCurrentDay(day);
-
-    // Clear task description if popup is closed
-    if (!showPopup) {
+  
+    if (showPopup) {
+      // If the popup is being closed (checkbox is unchecked), clear task description
       setTaskDescription('');
+    } else {
+      // If the popup is being opened (checkbox is checked), store the current employee and day
+      setCurrentEmployee(employeeId);
+      setCurrentDay(day);
     }
   };
+  
+  
 
   const handleSubmitPopup = () => {
     if (currentEmployee && currentDay && taskDescription) {
@@ -131,18 +136,21 @@ const Timesheets = () => {
       <table className="timesheet-table">
         <thead>
           <tr>
-            <th><select
-        >
-          <option value="" class='text'>Project Code</option>
-          <option value="PR5">PR1</option>
-          <option value="PR4">PR2</option>
-          <option value="PR3">PR3</option>
-        </select></th>
+            <th>
+              <select>
+                <option value="" className="text">Project Code</option>
+                <option value="PR5">PR1</option>
+                <option value="PR4">PR2</option>
+                <option value="PR3">PR3</option>
+              </select>
+            </th>
             {weekDates.map((date) => (
               <th key={date.toISOString()}>
                 {date.toLocaleDateString('en-US', { weekday: 'short' })}
                 <br />
-                {date.getDate()} {date.toLocaleDateString('en-US', { month: 'short' })}
+                {date.toLocaleDateString('en-US', { month: 'short' })}-{date.getDate()} {/* Display month */}
+                <br />
+                
               </th>
             ))}
           </tr>
@@ -154,19 +162,21 @@ const Timesheets = () => {
                 <td>Hours</td>
                 {weekDates.map((date) => (
                   <td key={date.toISOString()}>
-                  <input
-                    type="number"
-                    name="hours"
-                    className="timesheet-input"
-                    value={timesheetData.find((entry) => entry.employee === employee.id)?.[date.toISOString()]?.hours || ''}
-                    onChange={(e) => handleInputChange(e, employee.id, date.toISOString())}
-                  />
-                  <input
-                    type="checkbox"
-                    className="checkbox-input"
-                    onClick={() => handleCheckboxChange(employee.id, date.toISOString())}
-                  />
-                </td>
+                    <input
+                      type="number"
+                      name="hours"
+                      className="timesheet-input"
+                      max={8}
+                      min={0}
+                      value={timesheetData.find((entry) => entry.employee === employee.id)?.[date.toISOString()]?.hours || ''}
+                      onChange={(e) => handleInputChange(e, employee.id, date.toISOString())}
+                    />
+                    <input
+                      type="checkbox"
+                      className="checkbox-input"
+                      onClick={() => handleCheckboxChange(employee.id, date.toISOString())}
+                    />
+                  </td>
                 ))}
               </tr>
             </React.Fragment>
@@ -174,14 +184,14 @@ const Timesheets = () => {
         </tbody>
       </table>
       {showPopup && (
-        <div className="popup">
-          <div className="popup-content">
+        <div className="large-popup">
+          <div className="large-popup-content">
             <h2>Task Description</h2>
             <textarea
               value={taskDescription}
               onChange={(e) => setTaskDescription(e.target.value)}
               placeholder="Enter task description"
-              rows="5"
+              rows="8"
             />
             <div className="popup-buttons">
               <button onClick={handleSubmitPopup}>Submit</button>

@@ -6,7 +6,16 @@ const EmployeeForm = () => {
   const [employees, setEmployees] = useState([]);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState('');
   const [formData, setFormData] = useState({
-    emp_name: '',
+    emp_firstname: '',
+    emp_lastname: '',
+    emp_gender: '',
+    ssn: '',
+    emp_username: '',
+    emp_alternatemail: '',
+    contact: '',
+    emp_type: '',
+    emp_status: '',
+    emp_department: '',
     emp_id: '',
     emp_mail: '',
     designation: '',
@@ -102,7 +111,16 @@ const EmployeeForm = () => {
         setEmployees(response.data);
         // Clear the form after successful deletion
         setFormData({
-          emp_name: '',
+          emp_firstname: '',
+          emp_lastname: '',
+          emp_gender: '',
+          ssn: '',
+          emp_username: '',
+          emp_alternatemail: '',
+          contact: '',
+          emp_type: '',
+          emp_status: '',
+          emp_department: '',
           emp_id: '',
           emp_mail: '',
           designation: '',
@@ -141,7 +159,16 @@ const EmployeeForm = () => {
     // If an employee is selected, autofill the form with existing details
     if (selectedEmployee) {
       setFormData({
-        emp_name: selectedEmployee.emp_name,
+        emp_firstname: selectedEmployee.emp_firstname,
+        emp_lastname: selectedEmployee.emp_lastname,
+        emp_gender: selectedEmployee.emp_gender,
+        ssn: selectedEmployee.ssn,
+        emp_username: selectedEmployee.emp_username,
+        emp_alternatemail: selectedEmployee.emp_alternatemail,
+        contact: selectedEmployee.contact,
+        emp_type: selectedEmployee.emp_type,
+        emp_status: selectedEmployee.emp_status,
+        emp_department: selectedEmployee.emp_department,
         emp_id: selectedEmployee.emp_id,
         emp_mail:selectedEmployee.emp_mail ,
         designation: selectedEmployee.designation,
@@ -152,9 +179,18 @@ const EmployeeForm = () => {
     } else {
       // If no employee is selected, clear the form
       setFormData({
-        emp_name: '',
+        emp_firstname: '',
+        emp_lastname: '',
+        emp_gender: '',
+        ssn: '',
+        emp_username: '',
+        emp_alternatemail: '',
+        contact: '',
+        emp_type: '',
+        emp_status: '',
+        emp_department: '',
         emp_id: '',
-        emp_mail:'',
+        emp_mail: '',
         designation: '',
         doj: '',
         dob: '',
@@ -165,7 +201,6 @@ const EmployeeForm = () => {
 
   return (
     <div className="employee-form-container">
-      <video src='4k0123_preview.mp4' autoPlay loop muted />
       <form onSubmit={handleFormSubmit}>
 
         {selectedAction === 'update' && (
@@ -180,7 +215,7 @@ const EmployeeForm = () => {
               <option value="">Select an Employee</option>
               {employees.map((employee) => (
                 <option key={employee.id} value={employee.id}>
-                  {employee.emp_name}
+                  {employee.emp_firstname}
                 </option>
               ))}
             </select>
@@ -198,26 +233,68 @@ const EmployeeForm = () => {
               <option value="">Select an Employee</option>
               {employees.map((employee) => (
                 <option key={employee.id} value={employee.id}>
-                  {employee.emp_name}
+                  {employee.emp_firstname}
                 </option>
               ))}
             </select>
           </div>
         )}
         {/* Other input fields */}
+        <ul className='side'>
         <div className="form-group">
-        <b>Name</b>
+        <b>First Name</b>
           <input
             type="text"
-            id="emp_name"
-            name="emp_name"
-            value={formData.emp_name}
+            id="emp_firstname"
+            name="emp_firstname"
+            value={formData.emp_firstname}
             onChange={handleInputChange}
             // placeholder="Enter Employee Name"
           />
         </div>
         <div className="form-group">
-        <b> Employee ID</b>
+        <b>Last Name</b>
+          <input
+            type="text"
+            id="emp_lastname"
+            name="emp_lastname"
+            value={formData.emp_lastname}
+            onChange={handleInputChange}
+            // placeholder="Enter Employee Name"
+          />
+        </div>
+    
+        <div className="form-group">
+        <label htmlFor="emp_gender"><b>Gender</b></label>
+        <select
+          id="emp_gender"
+          name="emp_gender"
+          value={formData.emp_gender}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+
+
+        </ul>
+        <ul className='side'>
+        <div className="form-group">
+        <b>User Name</b>
+          <input
+            type="text"
+            id="emp_username"
+            name="emp_username"
+            value={formData.emp_username}
+            onChange={handleInputChange}
+            // placeholder="Enter Employee Name"
+          />
+        </div>
+        <div className="form-group">
+        <b>Employee ID</b>
           <input
             type="text"
             id="emp_id"
@@ -238,29 +315,114 @@ const EmployeeForm = () => {
             // placeholder="Enter Employee ID"
           />
         </div>
+        </ul>
+        <ul className='side'>
         <div className="form-group">
-        <b>Designation</b>
+        <b>Alternate Email</b>
           <input
             type="text"
-            id="designation"
-            name="designation"
-            value={formData.designation}
+            id="emp_alternatemail"
+            name="emp_alternatemail"
+            value={formData.emp_alternatemail}
+            onChange={handleInputChange}
+            // placeholder="Enter Employee ID"
+          />
+        </div>
+        <div className="form-group">
+        <b>Contact Number </b>
+          <input
+            type="text"
+            id="contact"
+            name="contact"
+            value={formData.contact}
             onChange={handleInputChange}
             // placeholder="Enter Designation"
           />
         </div>
         <div className="form-group">
-        <b>Date of Joining</b>
+        <b>Social Security Number</b>
           <input
+            type="text"
+            id="ssn"
+            name="ssn"
+            value={formData.ssn}
+            onChange={handleInputChange}
+            // placeholder="Enter Designation"
+          />
+        </div>
+        </ul>
+        <ul className='side'>
+        <div className="form-group">
+        <label htmlFor="emp_department"><b>Department</b></label>
+        <select
+          id="emp_department"
+          name="emp_department"
+          value={formData.emp_department}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Department</option>
+          <option value="IT">IT</option>
+          <option value="HR">HR</option>
+          <option value="Finance">Finance</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label htmlFor="designation"><b>Designation</b></label>
+        <select
+          id="designation"
+          name="designation"
+          value={formData.designation}
+          onChange={handleInputChange}
+          >
+            <option value="Software Developer">Software Developer</option>
+            <option value="Senior Software Developer">Senior Software Developer</option>
+            <option value="Application Engineer">Application Engineer</option>
+            <option value="Solution Architect">Solution Architect</option>
+            <option value="Manager">Manager</option>
+            <option value="Team Lead">Team Lead</option>
+            <option value="Senior Manager">Senior Manager</option>
+          </select>
+        </div>
+        <div className="form-group">
+        <label htmlFor="emp_type"><b>Employee Type</b></label>
+        <select
+          id="emp_type"
+          name="emp_type"
+          value={formData.emp_type}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Employee Type</option>
+          <option value="Contract">Contract</option>
+          <option value="Full-Time">Full-Time</option>
+        </select>
+      </div>
+        </ul>
+        <ul className='side'>
+        <div className="form-group">
+        <label htmlFor="emp_status"><b>Employee Status</b></label>
+        <select
+          id="emp_status"
+          name="emp_status"
+          value={formData.emp_status}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Employee Type</option>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+        <div className="form-group">
+        <b>Date of Joining</b>
+        <input
             type="date"
             id="doj"
             name="doj"
-            value={formData.doj}
+            value={formData.dobj}
             onChange={handleInputChange}
           />
         </div>
-        <b>Date of Birth</b>
         <div className="form-group">
+        <b>Date of Birth</b>
           <input
             type="date"
             id="dob"
@@ -269,8 +431,9 @@ const EmployeeForm = () => {
             onChange={handleInputChange}
           />
         </div>
+        </ul>
         {/* Add more input fields as needed */}
-        <div className="form-group">
+        <div className="form-option-group">
           <select
             id="employeeAction"
             name="employeeAction"

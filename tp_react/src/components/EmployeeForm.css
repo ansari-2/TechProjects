@@ -1,19 +1,24 @@
-/* EmployeeForm.
-body {
-  background-image: url("hd.jpeg");
-  background-size:cover;
+/* EmployeeForm.css */
+ /* body {
+  background-image: url("images-1.jpg") 
+
 } */
 
-
 .employee-form-container {
-  width: 400px;
-  margin: 100px auto;
+  max-width: 1000px;
+  margin: 100px auto ;
+  margin-block-start: 20px;
   padding: 50px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: white;
-}
+  display: flex; 
+} 
 
+.form-group > b {
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+}
 .employee-form-container h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -21,6 +26,15 @@ body {
 
 .form-group {
   margin-bottom: 15px;
+  padding-left: 50px;
+}
+
+.form-option-group{
+  max-width: 250px;
+  max-height: fit-content;
+  max-block-size: 100px;
+  margin-left: 300px;
+  padding-left: 50px;
 }
 
 .form-group label {
@@ -29,11 +43,18 @@ body {
 }
 
 .form-group input {
-  width: 100%;
+  max-width: 250px;
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-right: 22px;
+}
+.side {
+  display: flex;
+  margin-bottom: 25px;
+  padding-right: 50px;
+  padding-bottom: 10px;
 }
 
 .form-buttons {
@@ -57,7 +78,7 @@ body {
 }
 /* Style for the select dropdown */
 .form-group select {
-  width: 298px;
+  width: 233px;
   padding: 5px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -71,4 +92,3 @@ body {
 }
 /* Add more CSS styling as needed */
 /* EmployeeForm.css */
-

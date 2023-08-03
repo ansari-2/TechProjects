@@ -70,7 +70,7 @@ const EmployeeUpload = () => {
             <option value="">Select an Employee</option>
             {employees.map((employee) => (
               <option key={employee.id} value={employee.id}>
-                {employee.emp_name}
+                {employee.emp_firstname}
               </option>
             ))}
           </select>

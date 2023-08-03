@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Aboutusp from './components/pages/Aboutusp';
 import Home from './components/pages/Home';
 import Orgstructurep from './components/pages/Orgstructurep';
+import Timesheets from './components/Timesheets';
 import './App.css';
 
 
@@ -49,6 +50,7 @@ function App() {
           <Route path="/upload" element={<EmployeeUpload/>} />
           <Route path="/aboutus" element={<Aboutusp/>} />
           <Route path="/organisation" element={< Orgstructurep/>} />
+          <Route path="/timesheets" element={< Timesheets/>} />
        
         </Routes>
       </div>
